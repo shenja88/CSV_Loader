@@ -14,13 +14,11 @@ import javax.persistence.EntityNotFoundException;
 public class ExceptionController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(InitDataException.class)
-    protected ResponseEntity<String> handleAccessDeniedException(InitDataException ex) {
-        return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(String.format("File (%s) not loading. Exception: %s. Description: %s.",
-                        ex.getFile(),
-                        ex.getException(),
-                        ex.getDesc()));
+    protected void handleAccessDeniedException(InitDataException ex) {
+        System.out.println(String.format("File (%s) not loading. Exception: %s. Description: %s.",
+                ex.getFile(),
+                ex.getException(),
+                ex.getDesc()));
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
